@@ -18,6 +18,7 @@ app.get('/',(req,res) =>{
 
 //Breads
 const breadsController = require('./controllers/breads_controller.js')
+//when the html has /breads, it gets the information from bradsController
 app.use('/breads',breadsController)
 
 //Listen
