@@ -16,11 +16,16 @@ breads.get('/',(req,res)=>{
 
 // SHOW
 breads.get('/:arrayIndex', (req, res) => {
+    //if there is content in that index of Bread, display it's content
     if (Bread[req.params.arrayIndex]) {
       res.render('Show', {
-        bread:Bread[req.params.arrayIndex]
+        //bread and index are the parameters inside the Show function
+        bread:Bread[req.params.arrayIndex],
+        index: req.params.arrayIndex,
       })
-    } else {
+    }
+    //if there is not content in that index, render the 404 view
+    else {
       res.send('404')
     }
   })
@@ -46,6 +51,12 @@ breads.get('/new', (req, res) => {
     res.render('new')
 })
 
+//Delete
+breads.delete('/:indexArray',(req,res)=>{
+    //Bread ==> accessing data from models/bread.js
+    Bread.splice(req.param.indexArray,1)
+    res.status(303).redirect('/breads')
+})
   
   
   
